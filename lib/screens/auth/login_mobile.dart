@@ -1,3 +1,4 @@
+import 'package:book_chat/screens/home/home_tabs.dart';
 import 'package:book_chat/utils/responsize_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
@@ -153,7 +154,7 @@ class _LoginMobileState extends State<LoginMobile> {
                               AppButton(
                                 onTap: () {
                                   if (_formKey.currentState?.validate() == true) {
-                                    // Navigator.of(context).pushNamed(LoginOtp.routeName);
+                                    Navigator.of(context).pushReplacementNamed(HomeTabBarWrapper.routeName);
                                   }
                                 },
                                 color: Theme.of(context).primaryColorDark,

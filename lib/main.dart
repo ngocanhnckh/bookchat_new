@@ -1,4 +1,5 @@
 import 'package:book_chat/screens/auth/register.dart';
+import 'package:book_chat/screens/home/home_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:book_chat/screens/auth/login_mobile.dart';
 import 'package:book_chat/screens/auth/login_otp.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         Register.routeName: (_) => const Register(),
         LoginOtp.routeName: (_) => const LoginOtp(),
         LoginPersonalInfo.routeName: (_) => const LoginPersonalInfo(),
+        HomeTabBarWrapper.routeName: (_) => HomeTabBarWrapper(),
       },
     );
   }

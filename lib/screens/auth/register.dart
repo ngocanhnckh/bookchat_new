@@ -1,3 +1,4 @@
+import 'package:book_chat/screens/home/home_tabs.dart';
 import 'package:book_chat/utils/responsize_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
@@ -127,29 +128,25 @@ class _RegisterState extends State<Register> {
                                 ],
                               ),
                               SizedBox(height: isBigScreen(context) ? 40 : 70),
-                              AppTextFormField(
-                                label: 'Username',
-                                validator: (txt) => txt?.isEmpty != false ? 'Required!' : null,
+                              AppTextFormField(label: 'Email', validator: (txt) => txt?.isEmpty != false ? 'Required!' : null),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: AppTextFormField(label: 'Họ', validator: (txt) => txt?.isEmpty != false ? 'Required!' : null),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: AppTextFormField(label: 'Tên', validator: (txt) => txt?.isEmpty != false ? 'Required!' : null),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 20),
-                              AppTextFormField(
-                                label: 'Password',
-                                validator: (txt) => txt?.isEmpty != false ? 'Required!' : null,
-                                obscureText: !passVisible,
-                                keyboardType: TextInputType.visiblePassword,
-                                prefixIcon: const Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: SizedBox(width: 24, height: 24)),
-                                suffixIcon: InkWell(
-                                  onTap: () => setState(() => passVisible = !passVisible),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: ImageIcon(
-                                      getIconImage(passVisible ? 'eye-crossed' : 'eye'),
-                                      color: Theme.of(context).primaryColorDark,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              AppTextFormField(label: 'Số điện thoại đăng ký', validator: (txt) => txt?.isEmpty != false ? 'Required!' : null),
+                              const SizedBox(height: 20),
+                              AppTextFormField(label: 'Mật khẩu', validator: (txt) => txt?.isEmpty != false ? 'Required!' : null),
+                              const SizedBox(height: 20),
+                              AppTextFormField(label: 'Nhập lại mật khẩu', validator: (txt) => txt?.isEmpty != false ? 'Required!' : null),
                               const SizedBox(height: 20),
                               Text(
                                 'Khi đăng ký, bạn đồng ý với Điều khoản Sử dụng \nvà Chính sách Quyền riêng tư của Bookchat.',
@@ -160,7 +157,7 @@ class _RegisterState extends State<Register> {
                               AppButton(
                                 onTap: () {
                                   if (_formKey.currentState?.validate() == true) {
-                                    Navigator.of(context).pushNamed(LoginOtp.routeName);
+                                    Navigator.of(context).pushReplacementNamed(HomeTabBarWrapper.routeName);
                                   }
                                 },
                                 color: Theme.of(context).primaryColor,
