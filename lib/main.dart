@@ -1,5 +1,6 @@
 import 'package:book_chat/screens/auth/register.dart';
 import 'package:book_chat/screens/home/home_tabs.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:book_chat/screens/auth/login_mobile.dart';
 import 'package:book_chat/screens/auth/login_otp.dart';
@@ -26,11 +27,26 @@ class MyApp extends StatelessWidget {
       ),
       home: const SplashScreen(),
       routes: {
-        LoginMobile.routeName: (_) => const LoginMobile(),
-        Register.routeName: (_) => const Register(),
-        LoginOtp.routeName: (_) => const LoginOtp(),
-        LoginPersonalInfo.routeName: (_) => const LoginPersonalInfo(),
-        HomeTabBarWrapper.routeName: (_) => HomeTabBarWrapper(),
+        LoginMobile.routeName: (_) => ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+              child: const LoginMobile(),
+            ),
+        Register.routeName: (_) => ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+              child: const Register(),
+            ),
+        LoginOtp.routeName: (_) => ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+              child: const LoginOtp(),
+            ),
+        LoginPersonalInfo.routeName: (_) => ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+              child: const LoginPersonalInfo(),
+            ),
+        HomeTabBarWrapper.routeName: (_) => ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+              child: HomeTabBarWrapper(),
+            ),
       },
     );
   }

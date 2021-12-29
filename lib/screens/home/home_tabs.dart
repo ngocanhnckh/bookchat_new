@@ -4,6 +4,7 @@ import 'package:book_chat/screens/home/menu.dart';
 import 'package:book_chat/screens/home/notification.dart';
 import 'package:book_chat/screens/home/web.dart';
 import 'package:book_chat/utils/utils.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Notification;
 
 import '../../../utils/icon_image.dart';
@@ -69,6 +70,8 @@ class HomeTabBarWrapper extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 72 + mediaQuery.viewPadding.bottom),
                   color: const Color(0xFFF9F9F9),
                   child: PageView(
+                    scrollBehavior:
+                        ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
                     onPageChanged: (final int page) => currentPage.value = page,
                     controller: pageController,
                     children: const <Widget>[Home(), Web(), Library(), Notification(), Menu()],

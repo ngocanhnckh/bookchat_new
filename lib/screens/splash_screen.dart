@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:book_chat/screens/auth/login_mobile.dart';
+import 'package:book_chat/screens/home/home_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:book_chat/widgets/widgets.dart';
 
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void didChangeDependencies() {
     if (!firstDone) {
       firstDone = true;
-      loadImages().then((_) => Navigator.of(context).pushReplacementNamed(LoginMobile.routeName));
+      loadImages().then((_) => Navigator.of(context).pushReplacementNamed(HomeTabBarWrapper.routeName));
     }
     super.didChangeDependencies();
   }
