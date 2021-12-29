@@ -30,18 +30,24 @@ class HomeTabBarWrapper extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-            color: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [BoxShadow(offset: const Offset(0, 2), color: Colors.black.withOpacity(0.05), blurRadius: 10)],
+            ),
             alignment: Alignment.center,
             child: SafeArea(
               child: Row(
                 children: [
-                  Image.asset('lib/assets/images/logo.png', height: 35),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Image.asset('lib/assets/images/logo.png', height: 35),
+                  ),
                   const Spacer(),
-                  if (isBigScreen(context)) tabs(),
+                  if (isBigScreen(context)) SizedBox(width: mediaQuery.size.width / 2, height: 51, child: tabs()),
                   const Spacer(),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.chat_bubble_outline)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.chat_bubble_outline)),
                   IconButton(
                     onPressed: () {},
                     icon: Container(
