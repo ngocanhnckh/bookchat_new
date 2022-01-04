@@ -30,37 +30,37 @@ class HomeTabBarWrapper extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [BoxShadow(offset: const Offset(0, 2), color: Colors.black.withOpacity(0.05), blurRadius: 10)],
-            ),
-            alignment: Alignment.center,
-            child: SafeArea(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Image.asset('lib/assets/images/logo.png', height: 35),
-                  ),
-                  const Spacer(),
-                  if (isBigScreen(context)) SizedBox(width: mediaQuery.size.width / 2, height: 51, child: tabs()),
-                  const Spacer(),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.chat_bubble_outline)),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(100)),
+          if (isBigScreen(context))
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [BoxShadow(offset: const Offset(0, 2), color: Colors.black.withOpacity(0.05), blurRadius: 10)],
+              ),
+              alignment: Alignment.center,
+              child: SafeArea(
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Image.asset('lib/assets/images/logo.png', height: 35),
                     ),
-                  ),
-                ],
+                    const Spacer(),
+                    if (isBigScreen(context)) SizedBox(width: mediaQuery.size.width / 2, height: 51, child: tabs()),
+                    const Spacer(),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.chat_bubble_outline)),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(100)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
           Expanded(
             child: Stack(
               alignment: Alignment.center,
