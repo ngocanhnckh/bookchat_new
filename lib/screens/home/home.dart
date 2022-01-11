@@ -45,15 +45,14 @@ class _HomeState extends State<Home> {
             children: [
               SizedBox(height: 30),
               ClipRRect(
-                borderRadius: isBigScreen(context) ? BorderRadius.zero : BorderRadius.circular(16),
+                borderRadius: !isBigScreen(context) ? BorderRadius.zero : BorderRadius.circular(16),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
                     SizedBox(
                       height: 180,
                       child: PageView.builder(
-                        scrollBehavior:
-                            ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+                        scrollBehavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
                         controller: adViewController,
                         itemCount: 5,
                         itemBuilder: (ctx, index) => Container(
@@ -67,14 +66,17 @@ class _HomeState extends State<Home> {
               ),
               const SizedBox(height: 20),
               Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  borderRadius: !isBigScreen(context) ? BorderRadius.zero : BorderRadius.circular(16),
+                  color: Colors.white,
+                ),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: List.generate(
                       20,
                       (index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                         child: Column(
                           children: [
                             ClipRRect(
@@ -90,6 +92,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
