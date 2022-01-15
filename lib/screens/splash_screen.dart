@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void didChangeDependencies() {
     if (!firstDone) {
       firstDone = true;
-      loadImages().then((_) => Navigator.of(context).pushReplacementNamed(HomeTabBarWrapper.routeName));
+      loadImages().then((_) => Navigator.of(context).pushReplacementNamed(LoginMobile.routeName));
     }
     super.didChangeDependencies();
   }

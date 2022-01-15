@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "474265766812",
+    "project_id": "book-chat-web",
+    "storage_bucket": "book-chat-web.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474265766812:android:4bcde412fc7a8d2ff91659",
+        "android_client_info": {
+          "package_name": "com.example.book_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474265766812-4mksj5id1ffb7qni6p4g9dtao2tbn4ii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBEn_wPQJ8563m5YbvqFeYt0_1Qm0TCKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474265766812-4mksj5id1ffb7qni6p4g9dtao2tbn4ii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
