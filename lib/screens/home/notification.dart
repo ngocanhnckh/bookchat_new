@@ -1,3 +1,5 @@
+import 'package:book_chat/screens/home/search.dart';
+import 'package:book_chat/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class Notification extends StatelessWidget {
@@ -6,30 +8,58 @@ class Notification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return SafeArea(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(width: 24),
-              IconButton(icon: const Icon(Icons.chevron_left), onPressed: () => Navigator.of(context).pop()),
-              const Text('Thông báo', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
-              const Icon(Icons.search),
-              const SizedBox(width: 24),
-            ],
-          ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ...List.generate(10, (index) => const NotificationItem(title: ' mới đăng một bài viết  ', mainName: 'Người dùng')),
-                const Divider(),
-                const Text('Hôm qua', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
-                ...List.generate(
-                    10, (index) => const NotificationItem(title: ' đã đăng một bài viết trong Nhóm  ', mainName: 'Người dùng')),
+                IconButton(icon: const Icon(Icons.chevron_left), onPressed: () => Navigator.of(context).pop()),
+                const Text('Thông báo', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
+                IconButton(onPressed: () => Navigator.of(context).pushNamed(Search.routeName), icon: const Icon(Icons.search)),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (isBigScreen(context)) Spacer(flex: 1),
+                Expanded(
+                  flex: 2,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          Divider(),
+                          Text('Hôm qua', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          Divider(),
+                          Text('Hôm qua', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                          NotificationItem(text1: 'Người dùng', text2: ' mới đăng một bài viết'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                if (isBigScreen(context)) Spacer(flex: 1),
               ],
             ),
           ),
@@ -40,38 +70,33 @@ class Notification extends StatelessWidget {
 }
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({
-    Key? key,
-    required this.title,
-    required this.mainName,
-  }) : super(key: key);
-  final String title;
-  final String mainName;
+  const NotificationItem({Key? key, required this.text1, required this.text2}) : super(key: key);
+  final String text1;
+  final String text2;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(color: const Color(0xFF141414), borderRadius: BorderRadius.circular(100)),
-        ),
-        const SizedBox(width: 20),
-        Expanded(
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(text: title, style: const TextStyle(fontWeight: FontWeight.w700)),
-                TextSpan(text: title),
-              ],
-              style: TextStyle(fontSize: 16, color: const Color(0xFF141414)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: [
+          const CircleAvatar(backgroundImage: NetworkImage('https://picsum.photos/100'), radius: 20),
+          const SizedBox(width: 20),
+          Expanded(
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(text: text1, style: const TextStyle(fontWeight: FontWeight.w700)),
+                  TextSpan(text: text2),
+                ],
+                style: const TextStyle(fontSize: 16, color: Colors.black),
+              ),
             ),
           ),
-        ),
-        const SizedBox(width: 30),
-        const Icon(Icons.more_horiz),
-      ],
+          const SizedBox(width: 30),
+          Icon(Icons.more_horiz),
+        ],
+      ),
     );
   }
 }

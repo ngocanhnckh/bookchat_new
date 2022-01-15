@@ -70,8 +70,7 @@ class HomeTabBarWrapper extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 72 + mediaQuery.viewPadding.bottom),
                   color: const Color(0xFFF9F9F9),
                   child: PageView(
-                    scrollBehavior:
-                        ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+                    scrollBehavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
                     onPageChanged: (final int page) => currentPage.value = page,
                     controller: pageController,
                     children: const <Widget>[Home(), Web(), Library(), Notification(), Menu()],
@@ -122,21 +121,21 @@ class BottomBarIcon extends StatelessWidget {
   final bool isLast;
 
   @override
-  Widget build(final BuildContext context) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: isFirst && !isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
-            topRight: isLast && !isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
-            bottomLeft: isFirst && isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
-            bottomRight: isLast && isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
+  Widget build(final BuildContext context) => InkWell(
+        onTap: disabled ? null : onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: isFirst && !isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
+              topRight: isLast && !isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
+              bottomLeft: isFirst && isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
+              bottomRight: isLast && isBigScreen(context) ? const Radius.circular(16) : Radius.zero,
+            ),
+            color: selected ? Colors.white : Theme.of(context).primaryColor,
           ),
-          color: selected ? Colors.white : Theme.of(context).primaryColor,
-        ),
-        alignment: Alignment.center,
-        child: Opacity(
-          opacity: disabled ? 0.6 : 1,
-          child: InkWell(
-            onTap: disabled ? null : onTap,
+          alignment: Alignment.center,
+          child: Opacity(
+            opacity: disabled ? 0.6 : 1,
             child: Stack(children: <Widget>[Padding(padding: const EdgeInsets.all(3), child: ImageIcon(image))]),
           ),
         ),

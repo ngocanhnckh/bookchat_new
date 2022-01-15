@@ -1,4 +1,6 @@
 import 'package:book_chat/screens/auth/login_mobile.dart';
+import 'package:book_chat/screens/home/message.dart';
+import 'package:book_chat/screens/home/search.dart';
 import 'package:book_chat/utils/utils.dart';
 import 'package:book_chat/widgets/app_buttons.dart';
 import 'package:book_chat/widgets/widgets.dart';
@@ -47,8 +49,8 @@ class _HomeState extends State<Home> {
                     child: Image.asset('lib/assets/images/logo.png', height: 35),
                   ),
                   const Spacer(),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.chat_bubble_outline)),
+                  IconButton(onPressed: () => Navigator.of(context).pushNamed(Search.routeName), icon: const Icon(Icons.search)),
+                  IconButton(onPressed: () => Navigator.of(context).pushNamed(Messages.routeName), icon: const Icon(Icons.chat_bubble_outline)),
                   IconButton(
                     onPressed: () {},
                     icon: Container(
@@ -77,15 +79,14 @@ class _HomeState extends State<Home> {
                 children: [
                   SizedBox(height: 30),
                   ClipRRect(
-                    borderRadius: isBigScreen(context) ? BorderRadius.zero : BorderRadius.circular(16),
+                    borderRadius: !isBigScreen(context) ? BorderRadius.zero : BorderRadius.circular(16),
                     child: Stack(
                       alignment: Alignment.bottomCenter,
                       children: [
                         SizedBox(
                           height: 180,
                           child: PageView.builder(
-                            scrollBehavior:
-                                ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
+                            scrollBehavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
                             controller: adViewController,
                             itemCount: 5,
                             itemBuilder: (ctx, index) => Container(
@@ -136,7 +137,7 @@ class _HomeState extends State<Home> {
                           child: Image.network('https://picsum.photos/300', height: 40, width: 40),
                         ),
                         const SizedBox(width: 15),
-                        const Expanded(child: AppTextFormField(label: 'What’s on your mind ?')),
+                        const Expanded(child: AppTextFormField(label: 'What\'s on your mind ?')),
                       ],
                     ),
                   ),
