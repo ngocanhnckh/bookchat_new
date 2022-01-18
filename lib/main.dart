@@ -3,6 +3,7 @@ import 'package:book_chat/screens/home/home_tabs.dart';
 import 'package:book_chat/screens/home/message.dart';
 import 'package:book_chat/screens/home/search.dart';
 import 'package:book_chat/screens/home/search_result.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:book_chat/screens/auth/login_mobile.dart';
@@ -10,8 +11,14 @@ import 'package:book_chat/screens/auth/login_otp.dart';
 import 'package:book_chat/screens/auth/personal_information.dart';
 import 'package:book_chat/screens/splash_screen.dart';
 import 'package:book_chat/utils/utils.dart';
+import './firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 

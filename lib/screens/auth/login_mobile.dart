@@ -5,7 +5,7 @@ import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:book_chat/screens/auth/login_otp.dart';
 import 'package:book_chat/utils/icon_image.dart';
 import 'package:book_chat/widgets/widgets.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'register.dart';
 
 class LoginMobile extends StatefulWidget {
@@ -19,6 +19,18 @@ class LoginMobile extends StatefulWidget {
 class _LoginMobileState extends State<LoginMobile> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   bool passVisible = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+      } else {
+        user.uid;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +129,8 @@ class _LoginMobileState extends State<LoginMobile> {
                                   children: [
                                     Text(
                                       'Đăng nhập',
-                                      style: TextStyle(color: Theme.of(context).primaryColorDark, fontSize: 28, fontWeight: FontWeight.w600),
+                                      style:
+                                          TextStyle(color: Theme.of(context).primaryColorDark, fontSize: 28, fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -132,7 +145,8 @@ class _LoginMobileState extends State<LoginMobile> {
                                 validator: (txt) => txt?.isEmpty != false ? 'Required!' : null,
                                 obscureText: !passVisible,
                                 keyboardType: TextInputType.visiblePassword,
-                                prefixIcon: const Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: SizedBox(width: 24, height: 24)),
+                                prefixIcon:
+                                    const Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: SizedBox(width: 24, height: 24)),
                                 suffixIcon: InkWell(
                                   onTap: () => setState(() => passVisible = !passVisible),
                                   child: Padding(
